@@ -30,9 +30,14 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::resource('/articles', ArticleController::class)->except(['index', 'show'])->middleware('auth');
 Route::resource('/articles', ArticleController::class)->only(['show']);
 
-Route::post('/password/confirm', [ConfirmPasswordController::class, 'confirm']);
-Route::get('/password/confirm', [ConfirmPasswordController::class, 'showConfirmForm'])->name('password.confirm');
+// Route::post('/password/confirm', [ConfirmPasswordController::class, 'confirm']);
+// Route::get('/password/confirm', [ConfirmPasswordController::class, 'showConfirmForm'])->name('password.confirm');
 Route::post('/password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
 Route::post('/password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
 Route::get('/password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
 Route::get('/password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+
+Route::prefix('articles')->name('articles.')->group(function () {
+    Route::put('/{article}/like', [ArticleController::class, 'like'])->name('like')->middleware('auth');
+    Route::delete('/{article}/like', [ArticleController::class, 'unlike'])->name('unlike')->middleware('auth');
+});
