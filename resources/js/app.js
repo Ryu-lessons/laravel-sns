@@ -8,6 +8,7 @@ import './bootstrap'
 import Vue from 'vue'
 import ArticleLike from './components/ArticleLike'
 import ArticleTagsInput from './components/ArticleTagsInput'
+import FollowButton from './components/FollowButton'
 
 window.Vue = require('vue').default;
 
@@ -35,5 +36,6 @@ const app = new Vue({
     components: {
         ArticleLike,
         ArticleTagsInput,
+        FollowButton,
     }
 })
