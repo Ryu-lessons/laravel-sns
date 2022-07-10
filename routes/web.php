@@ -34,6 +34,7 @@ Route::get('/password/reset/{token}', [ResetPasswordController::class, 'showRese
 // Route::get('/password/confirm', [ConfirmPasswordController::class, 'showConfirmForm'])->name('password.confirm');
 
 // Googleログイン関連
+// Googleログイン関連
 Route::prefix('login')->name('login.')->group(function () {
     Route::get('/{provider}', [LoginController::class, 'redirectToProvider'])->name('{provider}');
     Route::get('/{provider}/callback', [LoginController::class, 'handleProviderCallback'])->name('{provider}.callback');
