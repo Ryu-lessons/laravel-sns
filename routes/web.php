@@ -20,7 +20,6 @@ use App\Http\Controllers\UserController;
 |
 */
 
-// Auth関連
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
@@ -32,16 +31,6 @@ Route::get('/password/reset', [ForgotPasswordController::class, 'showLinkRequest
 Route::get('/password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 // Route::post('/password/confirm', [ConfirmPasswordController::class, 'confirm']);
 // Route::get('/password/confirm', [ConfirmPasswordController::class, 'showConfirmForm'])->name('password.confirm');
-
-// Googleログイン関連
-Route::prefix('login')->name('login.')->group(function () {
-    Route::get('/{provider}', [LoginController::class, 'redirectToProvider'])->name('{provider}');
-    Route::get('/{provider}/callback', [LoginController::class, 'handleProviderCallback'])->name('{provider}.callback');
-});
-Route::prefix('register')->name('register.')->group(function () {
-    Route::get('/{provider}', [RegisterController::class, 'showProviderUserRegistrationForm'])->name('{provider}');
-    Route::post('/{provider}', [RegisterController::class, 'registerProviderUser'])->name('{provider}');
-});
 
 Route::get('/', [ArticleController::class, 'index'])->name('articles.index');
 Route::resource('/articles', ArticleController::class)->except(['index', 'show'])->middleware('auth');
