@@ -20,7 +20,6 @@ use App\Http\Controllers\UserController;
 |
 */
 
-// Auth関連
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
@@ -33,7 +32,6 @@ Route::get('/password/reset/{token}', [ResetPasswordController::class, 'showRese
 // Route::post('/password/confirm', [ConfirmPasswordController::class, 'confirm']);
 // Route::get('/password/confirm', [ConfirmPasswordController::class, 'showConfirmForm'])->name('password.confirm');
 
-// Googleログイン関連
 // Googleログイン関連
 Route::prefix('login')->name('login.')->group(function () {
     Route::get('/{provider}', [LoginController::class, 'redirectToProvider'])->name('{provider}');
