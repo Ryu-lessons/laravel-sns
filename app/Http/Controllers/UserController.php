@@ -13,6 +13,8 @@ class UserController extends Controller
 
         $articles = $user->articles->sortByDesc('created_at');
 
+        // hhh
+
         return view('users.show', [
             'user' => $user,
             'articles' => $articles,
